@@ -4,7 +4,7 @@
 
 [View demo](https://vimeo-webvr-demo.glitch.me/) - [View 360 demo](https://vimeo-webvr-360demo.glitch.me/)
 
-This demo shows you how you can stream regular and 360 videos from your own Vimeo account into a WebVR (or any WebGL experience). It's all built on top of [A-frame](https://aframe.io) & React and is powered by [Glitch](https://glitch.com).
+This demo shows you how you can stream regular and 360 videos from your own Vimeo account into a WebVR app. It's all built on top of [A-frame](https://aframe.io) & React and is powered by [Glitch](https://glitch.com).
 
 ## How to watch in VR
 Check out [webvr.info](https://webvr.info/) to learn how you can view this demo on any of your VR headsets or mobile devices.
