@@ -15,6 +15,7 @@ First you'll need to sign into your [Vimeo](https://vimeo.com) account (or creat
 
 #### 1a. Remix this demo on Glitch
 [Glitch.com](https://glitch.com) is a wonderful platform that makes it pain-free to remix this demo without worrying about local or remote server setup.
+
 <a href="https://glitch.com/edit/#!/remix/vimeo-webvr-demo">
   <img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg?1504724691606" alt="remix button" aria-label="remix" width="124">
 </a>
