@@ -16,7 +16,7 @@ First you'll need to sign into your [Vimeo](https://vimeo.com) account (or creat
 #### 1a. Remix this demo on Glitch
 [Glitch.com](https://glitch.com) is a wonderful platform that makes it pain-free to remix this demo without worrying about local or remote server setup. [Go remix this demo](https://glitch.com/edit/#!/vimeo-demo).
 
-#### 1b. Run locally
+#### 1b. Or setup and run it locally
 First you will need to install Node. You will need [Homebrew](https://brew.sh/) installed first. Open up a terminal and run:
 
 ```
@@ -33,7 +33,7 @@ Now you can bootup the server:
 npm run start
 ```
 
-You're good to go! Now you can visit `http://localhost:55293` in your browser to see your app. You won't see any videos playing... yet!
+You're good to go! Now you can visit `http://localhost:55293` in your browser to see your app. But you won't see any videos playing... yet!
 
 #### 2. Setting up your secret Vimeo token
 We will need to use the Vimeo API so that we can grab the video files directly for WebGL to use. A Vimeo token is required so you can make authorized API calls.
