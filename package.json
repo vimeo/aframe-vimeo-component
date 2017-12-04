@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
+    "express": "^4.16.2",
+    "jsx-loader": "^0.13.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "webpack": "^3.8.1",
-    "jsx-loader": "^0.13.2",
     "vimeo": "^1.2.1",
-    "express": "^4.16.2",
-    "axios": "^0.17.1"
+    "webpack": "^3.10.0"
   },
   "scripts": {
     "build": "webpack",
