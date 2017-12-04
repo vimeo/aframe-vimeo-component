@@ -4,7 +4,7 @@ const React = require('react');
 const axios = require('axios');
 
 class Vimeo extends React.Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -18,13 +18,13 @@ class Vimeo extends React.Component {
   componentDidMount() {
     var self = this;
     var id = this.props.id;
-    
+
     if (this.props.url != null) {
       id = this.props.url.match(/\/?([0-9]+)/)[1];
     }
-    
+
     axios.get('/video/' + id).then(res => {
-      this.setState({ 
+      this.setState({
         videos:        res.data['files'],
         spatial:       res.data['spatial'],
         stereo_format: res.data['spatial'] ? res.data['spatial']['stereo_format'] : 'mono'
@@ -33,15 +33,15 @@ class Vimeo extends React.Component {
   }
 
   render() {
-    if (this.state.videos == null) {  
+    if (this.state.videos == null) {
       return <div>Loading!</div>
     }
-    
+
     var width = this.props.width || 16;
     var height = this.props.height || 9;
     var aspect_ratio = height / width;
-    
-    var video_assets = 
+
+    var video_assets =
       <a-assets timeout="1">
         <video id="vimeo" style={{display: "none"}} autoPlay loop crossOrigin="anonymous" playsInline webkit-playsinline="true" muted={this.props.muted}>
           {this.state.videos.map(function(video, i){
@@ -59,10 +59,10 @@ class Vimeo extends React.Component {
       </a-assets>;
 
     var video_display;
-    
+
     // 360 video
     if (this.state.spatial) {
-      
+
       // Stereoscopic video
       if (this.state.stereo_format != 'mono') {
         video_display = [
@@ -77,8 +77,8 @@ class Vimeo extends React.Component {
             radius: 100;
             segmentsWidth: 64;
             segmentsHeight: 64;"
-            position={this.props.position}   
-            rotation={this.props.rotation} 
+            position={this.props.position}
+            rotation={this.props.rotation}
             material="shader: flat; src: #vimeo;"
             scale="-1 1 1" stereo="eye:right; split: vertical;">
           </a-entity>
@@ -91,8 +91,8 @@ class Vimeo extends React.Component {
             radius: 100;
             segmentsWidth: 64;
             segmentsHeight: 64;"
-            position={this.props.position}   
-            rotation={this.props.rotation} 
+            position={this.props.position}
+            rotation={this.props.rotation}
             material="shader: flat; src: #vimeo;"
             scale="-1 1 1">
           </a-entity>
@@ -101,12 +101,12 @@ class Vimeo extends React.Component {
     }
     // Regular video
     else {
-      video_display = <a-video src="#vimeo" 
-        width={width} 
-        height={width * aspect_ratio} 
-        position={this.props.position}   
-        rotation={this.props.rotation} 
-        scale={this.props.scale} 
+      video_display = <a-video src="#vimeo"
+        width={width}
+        height={width * aspect_ratio}
+        position={this.props.position}
+        rotation={this.props.rotation}
+        scale={this.props.scale}
         play-on-window-click play-on-vrdisplayactivate-or-enter-vr />;
     }
 
@@ -116,5 +116,5 @@ class Vimeo extends React.Component {
     ];
   }
 }
- 
+
 module.exports = Vimeo;

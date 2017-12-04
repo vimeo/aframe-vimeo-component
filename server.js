@@ -17,13 +17,13 @@ app.get('/video/:id', (request, response) => {
   }, function(error, body, status_code, headers) {
     if (error) {
       response.status(500).send(error);
-    } 
+    }
     else {
       if (body["files"] == null) {
         response.status(401).send({ error: "You don't have access to this video's files."});
         return;
       }
-      
+
       // Prep the files to include the correct type and exclude uncessary files
       if (body["files"] != null) {
         body["files"] = body["files"].map(function(file, i) {
@@ -33,14 +33,14 @@ app.get('/video/:id', (request, response) => {
           if (file['quality'] == 'source') {
             return;
           }
-          
+
           return file;
         }).sort(function(a, b) {
           if (a['quality' == 'hls']) return -1;
           return 1;
         });
       }
-      
+
       response.status(200).send(body);
     }
   });
