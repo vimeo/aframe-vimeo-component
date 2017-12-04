@@ -1,7 +1,6 @@
 # Vimeo WebVR Demo
 
-<img src="images/demo.gif" width="49%" />
-<img src="images/360-demo.gif" width="49%" />
+<img src="images/demo.gif" width="49%" /> <img src="images/360-demo.gif" width="49%" />
 
 [View demo](https://vimeo-webvr-demo.glitch.me/) - [View 360 demo](https://vimeo-webvr-360demo.glitch.me/)
 
