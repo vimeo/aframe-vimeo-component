@@ -14,7 +14,10 @@ First you'll need to sign into your [Vimeo](https://vimeo.com) account (or creat
 > _Note: In order to stream Vimeo videos, you will need direct video file access via the Vimeo API. Accessing video files via API is limited to [Vimeo Pro and Business](https://vimeo.com/upgrade) customers._
 
 #### 1a. Remix this demo on Glitch
-[Glitch.com](https://glitch.com) is a wonderful platform that makes it pain-free to remix this demo without worrying about local or remote server setup. [Go remix this demo](https://glitch.com/edit/#!/vimeo-demo).
+[Glitch.com](https://glitch.com) is a wonderful platform that makes it pain-free to remix this demo without worrying about local or remote server setup.
+<a href="https://glitch.com/edit/#!/remix/vimeo-webvr-demo">
+  <img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg?1504724691606" alt="remix button" aria-label="remix" width="124">
+</a>
 
 #### 1b. Or setup and run it locally
 First you will need to install Node. You will need [Homebrew](https://brew.sh/) installed first. Open up a terminal and run:
