@@ -23,7 +23,12 @@ app.get('/video/:id', (request, response) => {
         response.status(401).send({ error: "You don't have access to this video's files."});
         return;
       }
-
+      
+      var version = 1;
+      if (body['metadata']['connections'] && body['metadata']['connections']['versions']) {
+        version = body['metadata']['connections']['versions']['total'];
+      }
+      
       // Prep the files to include the correct type and exclude uncessary files
       if (body["files"] != null) {
         body["files"] = body["files"].map(function(file, i) {
@@ -33,14 +38,16 @@ app.get('/video/:id', (request, response) => {
           if (file['quality'] == 'source') {
             return;
           }
-
+          
+          file['link'] = file['link'].replace(/^http:/, 'https:') + "&v=" + version;
+          
           return file;
         }).sort(function(a, b) {
-          if (a['quality' == 'hls']) return -1;
+          if (parseInt(a['height']) > parseInt(b['height'])) return -1;
           return 1;
         });
       }
-
+      
       response.status(200).send(body);
     }
   });
