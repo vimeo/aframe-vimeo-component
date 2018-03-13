@@ -70,6 +70,8 @@ class Vimeo extends React.Component {
             radius: 100;
             segmentsWidth: 64;
             segmentsHeight: 64;"
+            position={this.props.position}   
+            rotation={this.props.rotation} 
             material="shader: flat; src: #vimeo;"
             scale="-1 1 1" stereo="eye:left; split: vertical;">
           </a-entity>,
