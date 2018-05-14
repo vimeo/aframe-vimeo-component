@@ -3,6 +3,8 @@
 const React = require('react');
 const axios = require('axios');
 
+require('aframe-video-illumination-component');
+
 class Vimeo extends React.Component {
 
   constructor(props) {
@@ -109,7 +111,8 @@ class Vimeo extends React.Component {
         position={this.props.position}
         rotation={this.props.rotation}
         scale={this.props.scale}
-        play-on-window-click play-on-vrdisplayactivate-or-enter-vr />;
+        play-on-window-click play-on-vrdisplayactivate-or-enter-vr
+        video-illumination="intensity: 0.2; distance: 100; frametime: 100;" />;
     }
 
     return [

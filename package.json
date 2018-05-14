@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aframe-video-illumination-component": "^1.0.1",
     "axios": "^0.17.1",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "jsx-loader": "^0.13.2",
     "react": "^16.1.1",
