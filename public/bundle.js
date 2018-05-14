@@ -1630,18 +1630,13 @@ class Demo extends React.Component{
           React.createElement("img", {id: "skymap", crossOrigin: "anonymous", src: "https://cdn.glitch.com/fc6836f8-3375-4a38-b2c4-90273a4a349e%2Fsky.jpg?1511378241695"})
         ), 
 
-        React.createElement(Vimeo, {url: "https://vimeo.com/244123293", position: "0 3 -15", width: "16"}), 
-
+        React.createElement(Vimeo, {url: "https://vimeo.com/10821312", position: "0 3 -15", width: "16"}), 
         React.createElement("a-entity", {id: "powered-by-vimeo", position: "6 5 35", scale: "10 10 10", "gltf-model": "url(https://cdn.glitch.com/fc6836f8-3375-4a38-b2c4-90273a4a349e%2Fpowered-by-vimeo.gltf?1511887428199)", shadow: "cast: true; receive: true;"}), 
-        React.createElement("a-light", {id: "screen-light", type: "point", position: "0 3.5 -16.6", rotation: "0 180 0", light: "penumbra: 1; angle: 98.27; type: spot; intensity: 0.65; decay: 40.92; castShadow: true; color: #fff"}), 
         React.createElement("a-light", {type: "point", light: "color: #fff; intensity:0.4 castShadow: true;", position: "3 10 1"}), 
-
         React.createElement("a-plane", {position: "0 -4 0", rotation: "-90 0 0", width: "1000", height: "1000", color: "#7BC8A4", material: "roughness:1; metalness:0;", shadow: "cast: false; receive: true;"}), 
-
         React.createElement("a-entity", {id: "sky", geometry: "primitive:sphere; radius:100; phiLength:360; phiStart:0; thetaLength:90", material: "shader:flat; side:back; height:2048; src:#skymap; width:2048"})
       )
     );
-
   }
 }
 
@@ -18965,6 +18960,8 @@ module.exports = camelize;
 const React = __webpack_require__(3);
 const axios = __webpack_require__(35);
 
+__webpack_require__(54);
+
 class Vimeo extends React.Component {
 
   constructor(props) {
@@ -19032,6 +19029,8 @@ class Vimeo extends React.Component {
             "radius: 100;" + " " +
             "segmentsWidth: 64;" + " " +
             "segmentsHeight: 64;", 
+            position: this.props.position, 
+            rotation: this.props.rotation, 
             material: "shader: flat; src: #vimeo;", 
             scale: "-1 1 1", stereo: "eye:left; split: vertical;"}
           ),
@@ -19069,7 +19068,8 @@ class Vimeo extends React.Component {
         position: this.props.position, 
         rotation: this.props.rotation, 
         scale: this.props.scale, 
-        "play-on-window-click": true, "play-on-vrdisplayactivate-or-enter-vr": true});
+        "play-on-window-click": true, "play-on-vrdisplayactivate-or-enter-vr": true, 
+        "video-illumination": "intensity: 0.2; distance: 100; frametime: 100;"});
     }
 
     return [
@@ -19080,6 +19080,7 @@ class Vimeo extends React.Component {
 }
 
 module.exports = Vimeo;
+
 
 /***/ }),
 /* 35 */
@@ -19969,6 +19970,173 @@ module.exports = function spread(callback) {
     return callback.apply(null, arr);
   };
 };
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports) {
+
+/* global AFRAME */
+
+if (typeof AFRAME === 'undefined') {
+  throw new Error('Component attempted to register before AFRAME was available.');
+}
+
+/**
+ * Video Illumination component for A-Frame by Alfredo Consebola 2018.
+ */
+AFRAME.registerComponent('video-illumination', {
+  schema: {
+
+      intensity : { type:'number', default: 0.5},
+
+      distance : { type:'number', default: 10 },
+
+      // milliseconds per update, for 24fps use 41, for 30fps use 33, for 60fps use 16
+      frametime: { type: 'number', default: 41}
+
+  },
+
+  multiple: false,
+
+  init: function () { 
+
+      let wid = this.el.object3DMap.mesh.el.getAttribute("width") / 2;
+      let hei = this.el.object3DMap.mesh.el.getAttribute("height") / 2;
+      
+      wid *= 0.7;
+      hei *= 0.7;
+      
+      let lightA = document.createElement('a-light');
+      let lightB = document.createElement('a-light');
+      let lightC = document.createElement('a-light');
+      let lightD = document.createElement('a-light');
+      
+      this.lights = [];
+      let intensity = this.data.intensity;
+      let distance =  this.data.distance;
+      //one light per quadrant
+      lightA.setAttribute('position', new THREE.Vector3(2,1.5,1));
+      lightA.setAttribute('light', { intensity: intensity, type: 'point', distance: distance});
+      this.el.appendChild(lightA);
+      this.lights.push(lightA);
+      
+      lightB.setAttribute('position', new THREE.Vector3(-2,1.5,1));
+      lightB.setAttribute('light', { intensity: intensity, type: 'point', distance: distance});
+      this.el.appendChild(lightB);
+      this.lights.push(lightB);
+      
+      lightC.setAttribute('position', new THREE.Vector3(2,-1.5,1));
+      lightC.setAttribute('light', { intensity: intensity, type: 'point', distance: distance});
+      this.el.appendChild(lightC);
+      this.lights.push(lightC);
+      
+      lightD.setAttribute('position', new THREE.Vector3(-2,-1.5,1));
+      lightD.setAttribute('light', { intensity: intensity, type: 'point', distance: distance});
+      this.el.appendChild(lightD);
+      this.lights.push(lightD);
+
+      this.res = 4;
+      this.video = document.querySelector(this.el.getAttribute('src'));
+      this.acanvas = document.createElement('canvas');
+      this.acanvas.setAttribute("width",this.res);
+      this.acanvas.setAttribute("height",this.res);
+      
+      this.ctx = this.acanvas.getContext('2d');
+
+      this.img = document.createElement('img');
+      this.img.setAttribute("width",this.res);
+      this.img.setAttribute("height",this.res);
+      
+      this.wait = 0; // throttle counter
+      
+      /*
+      
+            The idea is that we'll downscale the frame to 4x4 pixels, then sample the brightest pixel
+            and use that for the corresponding quadrant light.
+            
+
+            Bytes in the image data R G B A we'll use to sample:
+            
+            q0                          q1
+            0 1 2 3, 4 5 6 7         ;  8 9 10 11, 12 13 14 15,
+            16 17 18 19, 20 21 22 23 ;  24 25 26 27,  28 29 30 31,
+
+            q2                          q3 
+            32 33 34 35, 36 37 38 39 ;  40 41 42 43, 44 45 46 47,
+            48 49 50 51, 52 53 54 55 ;  56 57 58 59, 60 61 62 63
+            
+            So pixel [0] is bytes r : 0 + 0, g : 0 + 1, b: 0 + 2, a : 0 + 3
+
+      */
+      
+      this.quadrants = [
+          [0,4,16,20],
+          [8,12,24,28],
+          [32,36,48,52],
+          [40,44,56,60]
+      ];
+
+  },
+
+  remove: function () { 
+
+      for(let i=0; i<4; i++){
+        this.el.removeChild(this.lights[i]);
+      }
+      
+  },
+
+  tick: function(t,dt){
+            
+      if(this.wait >= this.data.frametime/1000){ 
+      
+          this.wait = 0;
+          
+          this.ctx.drawImage(this.video, 0, 0, this.res, this.res);
+        
+          let c = []; // brightest color of each quadrant
+          let frame = this.ctx.getImageData(0, 0, this.res, this.res);
+          
+          // for each quadrant
+          for(let j=0; j<4; j++){
+
+              let q = this.quadrants[j];
+              let p = [];
+              for(let i=0; i<4; i++){
+
+                      p[i] = [];
+                      p[i][0] = frame.data[q[i] + 0];
+                      p[i][1] = frame.data[q[i] + 1];
+                      p[i][2] = frame.data[q[i] + 2];
+                
+                      // To calculate relative luminance under sRGB and RGB colorspaces that use Rec. 709:
+                      let color = new THREE.Color(p[i][0], p[i][1], p[i][2]);
+                      p[i][3] = 0.2126*color.r + 0.7152*color.g + 0.0722*color.b;
+
+              }
+            
+              // find brightest
+              p.sort(function (a, b) {
+                  return a[3] < b[3];
+              });
+              c.push(p[0]);
+
+          }
+          
+          if(this.lights[0].object3DMap.light){
+            
+              this.lights[0].object3DMap.light.color.setRGB(c[0][0]/255 ,c[0][1]/255 ,c[0][2]/255);
+              this.lights[1].object3DMap.light.color.setRGB(c[1][0]/255 ,c[1][1]/255 ,c[1][2]/255);
+              this.lights[2].object3DMap.light.color.setRGB(c[2][0]/255 ,c[2][1]/255 ,c[2][2]/255);
+              this.lights[3].object3DMap.light.color.setRGB(c[3][0]/255 ,c[3][1]/255 ,c[3][2]/255);
+            
+          }
+
+      }
+      this.wait+=dt/1000;
+    }
+});
 
 
 /***/ })

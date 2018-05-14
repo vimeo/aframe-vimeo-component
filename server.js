@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
+
 app.use(express.static('public'));
 
 app.get('/', (request, response) => {
