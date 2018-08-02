@@ -21,23 +21,28 @@ First you'll need to sign into your [Vimeo](https://vimeo.com) account (or creat
 </a>
 
 #### 1b. Or setup and run it locally
-First you will need to install Node. You will need [Homebrew](https://brew.sh/) installed first. Open up a terminal and run:
+First you will need to install Node & yarn. You will need [Homebrew](https://brew.sh/) installed first. Open up a terminal and run:
 
 ```
-brew install npm
+brew install yarn
 ```
 
 Then you'll need to install all the dependencies:
 ```
-npm run install
+yarn install
 ```
 
 Now you can bootup the server:
 ```
-npm run start
+yarn run start
 ```
 
 You're good to go! Now you can visit `http://localhost:55293` in your browser to see your app. But you won't see any videos playing... yet!
+
+To run the development server you can open up another terminal window and run:
+```
+yarn run develop
+```
 
 #### 2. Setting up your secret Vimeo token
 We will need to use the Vimeo API so that we can grab the video files directly for WebGL to use. A Vimeo token is required so you can make authorized API calls.
