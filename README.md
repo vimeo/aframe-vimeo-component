@@ -29,7 +29,7 @@ brew install npm
 
 Then you'll need to install all the dependencies:
 ```
-npm run install
+npm install
 ```
 
 Now you can bootup the server:
