@@ -65,6 +65,8 @@ Never used [A-frame](https://aframe.io/) before? Head on over to [aframe.io](htt
 ## Known limitations
 * Mobile web playback on Safari currently has a [known bug](https://bugs.webkit.org/show_bug.cgi?id=179417)
 
+## Let's collaborate
+Working on a cool video project? Let's talk - labs at vimeo dot com
 
 ## Credits
 * A-frame [aframevr/aframe](https://github.com/aframevr/aframe)
