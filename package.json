@@ -8,8 +8,6 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "jsx-loader": "^0.13.2",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
     "vimeo": "^1.2.1",
     "webpack": "^3.10.0"
   },
