@@ -15,6 +15,12 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack && node server.js"
+    "start": "webpack && node server.js",
+    "server": "node server.js",
+    "update": "git submodule update --init --recursive"
+  },
+  "devDependencies": {
+    "ejs": "^2.6.1",
+    "host-validation": "^2.0.1"
   }
 }
