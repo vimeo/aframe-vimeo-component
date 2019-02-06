@@ -15,12 +15,15 @@
   },
   "scripts": {
     "build": "webpack",
+    "build:watch": "webpack --env dev",
+    "build:threejs": "cd ext/vimeo-threejs-player && yarn && yarn build",
     "start": "webpack && node server.js",
     "server": "node server.js",
     "update": "git submodule update --init --recursive"
   },
   "devDependencies": {
     "ejs": "^2.6.1",
-    "host-validation": "^2.0.1"
+    "host-validation": "^2.0.1",
+    "yargs": "^12.0.5"
   }
 }

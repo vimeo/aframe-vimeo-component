@@ -3,10 +3,10 @@ const webpack = require('webpack');
 
 module.exports = {
   context: path.join(__dirname, './'),
-  entry: './app/demo.js',
+  entry: './src/index.js',
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
+    path: path.join(__dirname, 'dist'),
+    filename: 'aframe-vimeo-component.js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -17,7 +17,6 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'jsx-loader',
         exclude: /node_modules/,
-        include: path.join(__dirname, 'app'),
       },
     ],
   },

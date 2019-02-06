@@ -6,7 +6,6 @@ const ejs = require('ejs');
 const app = express();
 
 // Render engine for the express server
-app.use(express.static('assets'));
 app.use(express.static('dist'));
 app.engine('.html', ejs.__express);
 app.set('view-engine', 'html');
@@ -42,27 +41,7 @@ app.use(hostValidation({ hosts: [`127.0.0.1:${process.env.PORT}`,
 
 
 app.get('/', (request, response) => {
-  response.render('basic.html');
-});
-
-app.get('/basic', (request, response) => {
-  response.render('basic.html');
-});
-
-app.get('/webvr-video', (request, response) => {
-  response.render('webvr-video.html');
-});
-
-app.get('/shapes', (request, response) => {
-  response.render('shapes.html');
-});
-
-app.get('/album', (request, response) => {
-  response.render('album.html');
-});
-
-app.get('/two-and-a-half-d.html', (request, response) => {
-  response.render('two-and-a-half-d.html');
+  response.render('index.html');
 });
 
 // The route for getting videos from the vimeo API
