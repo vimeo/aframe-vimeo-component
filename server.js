@@ -7,6 +7,7 @@ const app = express();
 
 // Render engine for the express server
 app.use(express.static('dist'));
+app.use(express.static('ext'));
 app.engine('.html', ejs.__express);
 app.set('view-engine', 'html');
 app.set('views', __dirname + '/examples');
@@ -41,7 +42,15 @@ app.use(hostValidation({ hosts: [`127.0.0.1:${process.env.PORT}`,
 
 
 app.get('/', (request, response) => {
-  response.render('index.html');
+  response.render('basic.html');
+});
+
+app.get('/basic', (request, response) => {
+  response.render('basic.html');
+});
+
+app.get('/shapes', (request, response) => {
+  response.render('shapes.html');
 });
 
 // The route for getting videos from the vimeo API
