@@ -53,6 +53,10 @@ app.get('/shapes', (request, response) => {
   response.render('shapes.html');
 });
 
+app.get('/webvr-stereo', (request, response) => {
+  response.render('webvr-stereo.html');
+});
+
 // The route for getting videos from the vimeo API
 app.get('/vimeo/api', (request, response) => {
   let api = new Vimeo(null, null, process.env.VIMEO_TOKEN);

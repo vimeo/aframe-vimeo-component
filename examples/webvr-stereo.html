@@ -1,0 +1,11 @@
+<%- include('header.html'); -%>
+<a-scene>
+  <a-camera position="0 0 0"></a-camera>
+  <a-entity vimeo="id: 315931220;
+                   leftEye:#leftEye;
+                   rightEye:#rightEye;">
+    <a-entity id="rightEye" scale="-1 1 1" geometry="primitive: sphere; radius: 10" material="side: back"></a-entity>
+    <a-entity id="leftEye" scale="-1 1 1" geometry="primitive: sphere; radius: 10" material="side: back"></a-entity>
+  </a-entity>
+</a-scene>
+<%- include('footer.html'); -%>
