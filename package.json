@@ -19,10 +19,9 @@
     "yargs": "^12.0.5"
   },
   "scripts": {
-    "start": "yarn run update:threejs && yarn run build:threejs && yarn run build && yarn run format && yarn run server",
-    "server": "node server.js",
+    "start": "node server.js",
     "format": "standard ./src/index.js",
-    "build": "webpack --env build && webpack --env build",
+    "build": "yarn run update:threejs && yarn run build:threejs && webpack --env development && webpack --env build && yarn run format && yarn run start",
     "build:watch": "webpack --progress --colors --watch --env dev",
     "build:threejs": "cd ext/vimeo-threejs-player && yarn && yarn build",
     "update:threejs": "git submodule update --init --recursive"
