@@ -8,6 +8,7 @@ const app = express();
 // Render engine for the express server
 app.use(express.static('dist'));
 app.use(express.static('ext'));
+app.use(express.static('assets'));
 app.engine('.html', ejs.__express);
 app.set('view-engine', 'html');
 app.set('views', __dirname + '/examples');

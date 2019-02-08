@@ -1,7 +1,17 @@
 <%- include('header.html'); -%>
-<a-scene position="0 0 2">
+<a-scene>
+  <a-assets>
+    <a-asset-item id="terrain" src="/models/terrain.gltf"></a-asset-item>
+    <img id="skymap" src="/images/skymap.jpg" />
+  </a-assets>
+  
+  <a-camera position="0 2.7 0.5"></a-camera>
+
   <a-entity vimeo="id: 296928206">
-    <a-plane color="#000000" scale="1.6 0.9" position="0.0 1.5 -2.0"></a-plane>
+    <a-plane color="#000000" scale="3.2 1.8" position="0.0 3.4 -2.0"></a-plane>
   </a-entity>
+
+  <a-entity id="sky" geometry="primitive:sphere; radius:100; phiLength:360; phiStart:0; thetaLength:90" material="shader:flat; side:back; height:2048; src:#skymap; width:2048"></a-entity>
+  <a-entity gltf-model="#terrain" position="0 2 0"></a-entity>
 </a-scene>
 <%- include('footer.html'); -%>
