@@ -1,73 +1,63 @@
-# Vimeo WebVR Demo
+<h1 align="center">Vimeo A-Frame component</h1>
 
-<img src="images/demo.gif" width="49%" /> <img src="images/360-demo.gif" width="49%" />
+<p align="center"><b>An A-Frame component for streaming video from Vimeo to WebGL/VR/AR apps</b></p>
 
-[View demo](https://vimeo-webvr-demo.glitch.me/) - [View 360 demo](https://vimeo-webvr-360demo.glitch.me/)
+<p align="center">
+  <a href="https://app.codeship.com/projects/325924"><img src="https://app.codeship.com/projects/dc6de560-07c0-0137-30da-5e4580378d6f/status?branch=master" alt="Build Status"></a>
+    <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Code Style">
+    <img src="https://img.shields.io/npm/l/aframe.svg?style=flat-square" alt="License"></a>
+</p>
 
-This demo shows you how you can stream regular and 360 videos from your own Vimeo account into a WebVR app. It's all built on top of [A-frame](https://aframe.io) & React and is powered by [Glitch](https://glitch.com).
+<div align="center">
+  <a href="https://github.com/vimeo/vimeo-threejs-player/wiki/Getting-Started-%F0%9F%9A%80">Getting started</a>
+  &mdash;
+  <a href="#stay-in-touch">Stay in touch</a>
+</div>
 
-## How to watch in VR
-Check out [webvr.info](https://webvr.info/) to learn how you can view this demo on any of your VR headsets or mobile devices.
+## Examples
 
-## Getting started
-First you'll need to sign into your [Vimeo](https://vimeo.com) account (or create one if you haven't already) and make sure you have some videos uploaded.
-> _Note: In order to stream Vimeo videos, you will need direct video file access via the Vimeo API. Accessing video files via API is limited to [Vimeo Pro and Business](https://vimeo.com/upgrade) customers._
-
-#### 1a. Remix this demo on Glitch
-[Glitch.com](https://glitch.com) is a wonderful platform that makes it pain-free to remix this demo without worrying about local or remote server setup.
-
-<a href="https://glitch.com/edit/#!/remix/vimeo-webvr-demo">
-  <img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg?1504724691606" alt="remix button" aria-label="remix" width="124">
+<a href="#">
+  <img alt="Basic" target="_blank" src="https://i.imgur.com/4EZryzy.gif" height="190" width="32%">
+</a>
+<a href="#">
+  <img alt="Shapes" target="_blank" src="https://i.imgur.com/XZi8pfj.gif" height="190" width="32%">
+</a>
+<a href="#">
+  <img alt="360 WebVR" target="_blank" src="https://i.imgur.com/2xo8mrq.gif" height="190" width="32%">
 </a>
 
-#### 1b. Or setup and run it locally
-First you will need to install Node. You will need [Homebrew](https://brew.sh/) installed first. Open up a terminal and run:
 
-```
-brew install npm
-```
+## Features
+📼 **Streaming video made simple**: The component lets you stream video hosted on Vimeo directly to your A-Frame app
 
-Then you'll need to install all the dependencies:
-```
-npm install
-```
+🏋🏿‍ **Let us do the heavy lifting**: stream multiple resolutions including adaptive video on supported platforms for best performance and video quality
 
-Now you can bootup the server:
-```
-npm run start
-```
+📱 **Works everywhere**: works on phones, tablets, laptops, computers, VR headsets and even underwater
 
-You're good to go! Now you can visit `http://localhost:55293` in your browser to see your app. But you won't see any videos playing... yet!
+## Usage
+To start playing and streaming video now, remix the Glitch example:
 
-#### 2. Setting up your secret Vimeo token
-We will need to use the Vimeo API so that we can grab the video files directly for WebGL to use. A Vimeo token is required so you can make authorized API calls.
+[Glitch badge]
 
-To make your life easy, we [made this handy link which will generate the token for you](https://vimeo-authy.herokuapp.com/auth/vimeo/webgl). Once you have authorized the app, it will give you a token so you can paste into the `.env` file. If you're running this locally, create a `.env` file in your root folder. Your `.env` file should now look something like this:
-```
-VIMEO_TOKEN=406cea4d4xxxxxxxxxxe437756d036f5
-```
+The first step is to generate your own Vimeo API token. [Generate the token](https://vimeo-authy.herokuapp.com/auth/vimeo/webgl), and then copy it and paste it into the *.env* in Glitch.
 
-Don't forget to restart your server after updating your `.env`.
+Almost done, go to the basic example under `examples/basic.html`
+ and change the video id in line in to your Vimeo video id. It should look like
+ ```html
+  <a-entity vimeo="id: vimeo_video_id">
+ ```
+Try our other examples or head to our getting started guide to learn more
 
-#### 3. Playing your Vimeo video
-Now that you're all setup, you can start streaming video. Check out the React file `app/demo.js` and find the following line of code:
+> Streaming Vimeo videos requires video file access via the Vimeo API. Accessing video files is limited to [Vimeo Pro and Business](https://vimeo.com/upgrade) customers.
 
-```
-<Vimeo url="https://vimeo.com/244123293" />
-```
+## Questions
+For questions and support, ask on [StackOverflow](https://stackoverflow.com/questions/ask/?tags=vimeo)
 
-Replace the `url` with your own Vimeo video and like magic, your video should start playing!
+## Stay in Touch
+[Join our newsletter](https://vimeo.us6.list-manage.com/subscribe?u=a3cca16f9d09cecb87db4be05&id=28000dad3e) for more updates, or visit the [Creator Labs website](https://labs.vimeo.com) to learn more.
 
-#### 4. Customize your world
-Never used [A-frame](https://aframe.io/) before? Head on over to [aframe.io](https://aframe.io/) to learn how to build your own WebVR experience!
+## Contributing
+Get involved! Check out the [Setting up the development environment guide](https://github.com/vimeo/vimeo-threejs-player/wiki/Setting-up-the-development-environment-%F0%9F%91%B7%F0%9F%8F%BD%E2%80%8D) for how to get started.
 
-
-## Known limitations
-* Mobile web playback on Safari currently has a [known bug](https://bugs.webkit.org/show_bug.cgi?id=179417)
-
-## Let's collaborate
-Working on a cool video project? Let's talk - labs at vimeo dot com
-
-## Credits
-* A-frame [aframevr/aframe](https://github.com/aframevr/aframe)
-* 360 Stereo support made possible by [oscarmarinmiro/aframe-stereo-component](https://github.com/oscarmarinmiro/aframe-stereo-component)
+## License
+This software is free software and is distributed under an [MIT License](LICENSE).
