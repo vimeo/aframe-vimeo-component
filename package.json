@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "aframe-video-illumination-component": "^1.0.1",
     "express": "^4.16.2",
     "vimeo": "^1.2.1"
   },
@@ -14,6 +13,7 @@
     "host-validation": "^2.0.1",
     "jsx-loader": "^0.13.2",
     "standard": "^12.0.1",
+    "sync-glitch-cli": "^2.0.1",
     "webpack": "^4.12.2",
     "webpack-cli": "^3.2.3",
     "yargs": "^12.0.5"
@@ -24,6 +24,7 @@
     "build": "yarn run update:threejs && yarn run build:threejs && webpack --env development && webpack --env build && yarn run format && yarn run start",
     "build:watch": "webpack --progress --colors --watch --env dev",
     "build:threejs": "cd ext/vimeo-threejs-player && yarn && yarn build",
-    "update:threejs": "git submodule update --init --recursive"
+    "update:threejs": "git submodule update --init --recursive",
+    "deploy:glitch": "sync-glitch"
   }
 }
