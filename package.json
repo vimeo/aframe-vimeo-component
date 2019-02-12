@@ -1,7 +1,9 @@
 {
   "name": "aframe-vimeo-component",
   "version": "0.2.0",
-  "private": true,
+  "engines": {
+    "node": ">=0.12"
+  },
   "dependencies": {
     "express": "^4.16.2",
     "vimeo": "^1.2.1"
