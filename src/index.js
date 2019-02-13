@@ -1,5 +1,5 @@
 /* eslint-disable */
-const Vimeo = require('./../ext/vimeo-threejs-player/dist/vimeo_threejs_player');
+const Vimeo = require('./../ext/vimeo-threejs-player/dist/vimeo-threejs-player');
 
 AFRAME.registerComponent('vimeo', {
   multiple: true,
