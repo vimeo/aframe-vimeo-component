@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "format": "standard ./src/index.js",
+    "format": "standard ./src/index.js --fix",
     "build": "yarn run update:threejs && yarn run build:threejs && yarn run format && yarn build:all",
     "build:all": "webpack --env development && webpack --env build",
     "build:watch": "webpack --progress --colors --watch --env dev",
