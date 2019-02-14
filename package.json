@@ -26,7 +26,7 @@
     "build": "yarn run update:threejs && yarn run build:threejs && yarn run format && webpack --env development && webpack --env build && yarn clean:threejs && yarn run start",
     "build:watch": "webpack --progress --colors --watch --env dev",
     "build:threejs": "cd ext/vimeo-threejs-player && yarn && yarn build",
-    "update:threejs": "git submodule update --init --recursive && git submodule update --recursive --remote",
+    "update:threejs": "git submodule update --init --recursive",
     "clean:threejs": "rm ext/vimeo-threejs-player/dist/*.js",
     "deploy:glitch": "sync-glitch"
   }
