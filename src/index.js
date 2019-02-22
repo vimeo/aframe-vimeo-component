@@ -15,10 +15,7 @@ AFRAME.registerComponent('vimeo', {
     quality: { type: 'string', default: 'auto' }
   },
   init: function () {
-    console.log('Hello Vimeo 🎥 version: ', Vimeo.version)
-
     if (this.data.leftEye && this.data.rightEye) {
-      console.log('[Vimeo] loading stereo spherical video 🌐')
       this.isStereoSpherical = true
     }
 
