@@ -46,7 +46,7 @@ Almost done, go to the basic example under `examples/basic.html`
  ```html
   <a-entity vimeo="id: vimeo_video_id">
  ```
-Try our other examples or head to our getting started guide to learn more
+Try our other examples or head to our [Getting Started](https://github.com/vimeo/aframe-vimeo-component/wiki/Getting-Started-%F0%9F%9A%80) guide to learn more
 
 > Streaming Vimeo videos requires video file access via the Vimeo API. Accessing video files is limited to [Vimeo Pro and Business](https://vimeo.com/upgrade) customers.
 
