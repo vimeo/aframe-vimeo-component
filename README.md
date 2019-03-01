@@ -5,24 +5,27 @@
 <p align="center">
   <a href="https://app.codeship.com/projects/325924"><img src="https://app.codeship.com/projects/dc6de560-07c0-0137-30da-5e4580378d6f/status?branch=master" alt="Build Status"></a>
     <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Code Style">
+    <img src="https://badge.glitch.me/aframe-vimeo-component" alt="Glitch Examples status" />
     <img src="https://img.shields.io/npm/l/aframe.svg?style=flat-square" alt="License"></a>
 </p>
 
 <div align="center">
   <a href="https://github.com/vimeo/aframe-vimeo-component/wiki/Getting-Started-%F0%9F%9A%80">Getting started</a>
   &mdash;
+  <a href="https://github.com/vimeo/aframe-vimeo-component/wiki">Wiki</a>
+  &mdash;
   <a href="#stay-in-touch">Stay in touch</a>
 </div>
 
 ## Examples
 
-<a href="#">
+<a href="https://aframe-vimeo-component.glitch.me/basic">
   <img alt="Basic" target="_blank" src="https://i.imgur.com/4EZryzy.gif" height="190" width="32%">
 </a>
-<a href="#">
+<a href="https://aframe-vimeo-component.glitch.me/shapes">
   <img alt="Shapes" target="_blank" src="https://i.imgur.com/XZi8pfj.gif" height="190" width="32%">
 </a>
-<a href="#">
+<a href="https://aframe-vimeo-component.glitch.me/webvr-stereo">
   <img alt="360 WebVR" target="_blank" src="https://i.imgur.com/2xo8mrq.gif" height="190" width="32%">
 </a>
 
@@ -37,7 +40,9 @@
 ## Usage
 To start playing and streaming video now, remix the Glitch example:
 
-[Glitch badge]
+<a href="https://glitch.com/edit/#!/remix/aframe-vimeo-component">
+<img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg?1504724691606" alt="Glitch remix badge" aria-label="remix" width="124" />
+</a>
 
 The first step is to generate your own Vimeo API token. [Generate the token](https://vimeo-authy.herokuapp.com/auth/vimeo/webgl), and then copy it and paste it into the *.env* in Glitch.
 
