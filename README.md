@@ -9,7 +9,7 @@
 </p>
 
 <div align="center">
-  <a href="https://github.com/vimeo/vimeo-threejs-player/wiki/Getting-Started-%F0%9F%9A%80">Getting started</a>
+  <a href="https://github.com/vimeo/aframe-vimeo-component/wiki/Getting-Started-%F0%9F%9A%80">Getting started</a>
   &mdash;
   <a href="#stay-in-touch">Stay in touch</a>
 </div>
