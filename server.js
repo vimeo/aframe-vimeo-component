@@ -1,63 +1,86 @@
+const Vimeo = require('vimeo').Vimeo;
 const express = require('express');
+const hostValidation = require('host-validation')
+const ejs = require('ejs');
+
 const app = express();
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').load();
-}
+// Render engine for the express server
+app.use(express.static('dist'));
+app.use(express.static('ext'));
+app.use(express.static('assets'));
+app.engine('.html', ejs.__express);
+app.set('view-engine', 'html');
+app.set('views', __dirname + '/examples');
 
-app.use(express.static('public'));
-
-app.get('/', (request, response) => {
-  response.sendFile(`${__dirname}/views/index.html`);
+// CORS headers
+app.use(function(req, res, next) {
+  console.log(`[Server] A ${req.method} request was made to ${req.url}`);
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
 });
 
-app.get('/video/:id', (request, response) => {
-  var Vimeo = require('vimeo').Vimeo;
-  var api = new Vimeo(null, null, process.env.VIMEO_TOKEN);
+/*
+* Vimeo token for local development is saved in a .env file
+* For deployment make sure to store it in an enviorment
+* variable called VIMEO_TOKEN=4trwegfudsbg4783724343
+*/
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+
+  if (process.env.VIMEO_TOKEN) {
+    console.log('[Server] Enviorment variables loaded from .env 💪🏻');
+  } else {
+    console.log('[Server] Could not find a VIMEO_TOKEN. Make sure you have a .env file or enviorment variable with the token');
+  }
+}
+
+app.use(hostValidation({ hosts: [`127.0.0.1:${process.env.PORT}`,
+                                 `192.168.1.99:${process.env.PORT}`,
+                                 `localhost:${process.env.PORT}`,
+                                 /.*\.glitch\.com$/,
+                                 /.*\.glitch\.me$/,
+                                 `${process.env.DOMAIN}:${process.env.PORT}`] }))
+
+
+app.get('/', (request, response) => {
+  response.render('basic.html');
+});
+
+app.get('/basic', (request, response) => {
+  response.render('basic.html');
+});
+
+app.get('/shapes', (request, response) => {
+  response.render('shapes.html');
+});
+
+app.get('/webvr-stereo', (request, response) => {
+  response.render('webvr-stereo.html');
+});
+
+// The route for getting videos from the vimeo API
+app.get('/vimeo/api', (request, response) => {
+  let api = new Vimeo(null, null, process.env.VIMEO_TOKEN);
 
   api.request({
-    method: 'GET',
-    path: '/videos/' + request.params.id,
-  }, function(error, body, status_code, headers) {
-    if (error) {
-      response.status(500).send(error);
+      method: 'GET',
+      path: request.query.path,
+      headers: { Accept: 'application/vnd.vimeo.*+json;version=3.4' },
+    },
+    function(error, body, status_code, headers) {
+      if (error) {
+        response.status(500).send(error);
+        console.log('[Server] ' + error);
+      } else {
+        // Pass through the whole JSON response
+        response.status(200).send(body);
+      }
     }
-    else {
-      if (body["files"] == null) {
-        response.status(401).send({ error: "You don't have access to this video's files."});
-        return;
-      }
-      
-      var version = 1;
-      if (body['metadata']['connections'] && body['metadata']['connections']['versions']) {
-        version = body['metadata']['connections']['versions']['total'];
-      }
-      
-      // Prep the files to include the correct type and exclude uncessary files
-      if (body["files"] != null) {
-        body["files"] = body["files"].map(function(file, i) {
-          if (file['quality'] == 'hls') {
-            file['type'] = 'application/x-mpegurl';
-          }
-          if (file['quality'] == 'source') {
-            return;
-          }
-          
-          file['link'] = file['link'].replace(/^http:/, 'https:') + "&v=" + version;
-          
-          return file;
-        }).sort(function(a, b) {
-          if (parseInt(a['height']) > parseInt(b['height'])) return -1;
-          return 1;
-        });
-      }
-      
-      response.status(200).send(body);
-    }
-  });
-
+  );
 });
 
 const listener = app.listen(process.env.PORT, () => {
-  console.log(`Your app is listening on port ${listener.address().port}. 🚢`);
+  console.log(`[Server] Running on port: ${listener.address().port} 🚢`);
 });

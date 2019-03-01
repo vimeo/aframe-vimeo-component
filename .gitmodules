@@ -1,0 +1,4 @@
+[submodule "ext/vimeo-threejs-player"]
+	path = ext/vimeo-threejs-player
+	url = https://github.com/vimeo/vimeo-threejs-player.git
+	ignore = dirty
