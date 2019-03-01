@@ -21,7 +21,7 @@
     "yargs": "^12.0.5"
   },
   "scripts": {
-    "start": "yarn server",
+    "start": "node assets/js/readme-glitch-fix.js && yarn server",
     "server": "node server.js",
     "format": "standard ./src/index.js --fix",
     "build": "yarn run update:threejs && yarn run build:threejs && yarn run format && yarn build:all",
