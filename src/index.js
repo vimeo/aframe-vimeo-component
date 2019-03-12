@@ -46,25 +46,13 @@ AFRAME.registerComponent('vimeo', {
     }
   },
   play: function () {
-    if (this.player.video.isLoaded()) {
-      if (this.player.isPaused()) {
-        this.player.play()
-      }
-    }
+    this.player.play()
   },
   pause: function () {
-    if (this.player.video.isLoaded()) {
-      if (this.player.isPlaying()) {
-        this.player.pause()
-      }
-    }
+    this.player.pause()
   },
   stop: function () {
-    if (this.player.video.isLoaded()) {
-      if (this.player.isPlaying()) {
-        this.player.stop()
-      }
-    }
+    this.player.stop()
   },
   traverseAndSetVideoTextures: function (object, tex) {
     object.traverse(function (child) {
