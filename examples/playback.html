@@ -1,0 +1,26 @@
+<%- include('header.html'); -%>
+<a-scene>
+  <a-camera position="0 0 10">
+      <a-cursor color="#ffffff"></a-cursor>
+  </a-camera>
+  
+  <a-entity id="vimeo-player" vimeo="id: 296928206; autoplay: false;">
+    <a-box id="box" scale="3 3 3" position="0 0 5"></a-box>
+  </a-entity>
+</a-scene>
+
+
+<script>
+  const box = document.getElementById('box');
+  const vimeoPlayer = document.querySelector('#vimeo-player').components.vimeo;
+  
+  box.addEventListener('click', function() {
+    if (vimeoPlayer.player.isPlaying()) {
+      vimeoPlayer.pause();
+    } else {
+      vimeoPlayer.play();
+    }
+  });
+</script>
+
+<%- include('footer.html'); -%>
