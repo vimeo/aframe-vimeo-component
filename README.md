@@ -28,6 +28,9 @@
 <a href="https://aframe-vimeo-component.glitch.me/webvr-stereo">
   <img alt="360 WebVR" target="_blank" src="https://i.imgur.com/2xo8mrq.gif" height="190" width="32%">
 </a>
+<a href="https://aframe-vimeo-component.glitch.me/playback">
+  <img alt="Playback Control" target="_blank" src="https://i.imgur.com/q4bDyo6.gif" height="190" width="32%">
+</a>
 
 
 ## Features

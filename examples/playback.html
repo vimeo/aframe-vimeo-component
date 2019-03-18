@@ -1,0 +1,42 @@
+<%- include('header.html'); -%>
+
+<a-scene>
+  <a-assets>
+    <a-asset-item id="terrain" src="/models/terrain.gltf"></a-asset-item>
+    <img id="skymap" src="/images/skymap.jpg" />
+  </a-assets>
+
+  <a-camera position="0 3 10">
+    <a-cursor color="#ffffff"></a-cursor>
+  </a-camera>
+
+  <a-entity vimeo="id: 296928206; autoplay: false;" id="vimeo-player">
+    <a-box id="box" scale="3 3 3" position="0 4 5"></a-box>
+  </a-entity>
+
+  <a-entity id="sky" geometry="primitive:sphere; radius:100; phiLength:360; phiStart:0; thetaLength:90"
+    material="shader:flat; side:back; height:2048; src:#skymap; width:2048"></a-entity>
+  <a-entity gltf-model="#terrain" position="0 2 0"></a-entity>
+</a-scene>
+
+<script>
+
+  //Wait until the A-Scene component was loaded before doing anything
+  document.querySelector('#vimeo-player').addEventListener('loaded', function () {
+    var box = document.getElementById('box');
+    var vimeoPlayer = document.querySelector('#vimeo-player').components.vimeo;
+
+    //Register on box click event that triggers the player
+    box.addEventListener('click', function () {
+      if (vimeoPlayer.player.isPlaying()) {
+        vimeoPlayer.pause();
+      } else {
+        vimeoPlayer.play();
+      }
+    });
+  });
+
+
+</script>
+
+<%- include('footer.html'); -%>
