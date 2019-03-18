@@ -9,13 +9,13 @@
     <img src="https://img.shields.io/npm/l/aframe.svg?style=flat-square" alt="License"></a>
 </p>
 
-<div align="center">
+<p align="center">
   <a href="https://github.com/vimeo/aframe-vimeo-component/wiki/Getting-Started-%F0%9F%9A%80">Getting started</a>
   &mdash;
   <a href="https://github.com/vimeo/aframe-vimeo-component/wiki">Wiki</a>
   &mdash;
   <a href="#stay-in-touch">Stay in touch</a>
-</div>
+</p>
 
 ## Examples
 
@@ -53,7 +53,7 @@ Almost done, go to the basic example under `examples/basic.html`
  ```
 Try our other examples or head to our [Getting Started](https://github.com/vimeo/aframe-vimeo-component/wiki/Getting-Started-%F0%9F%9A%80) guide to learn more
 
-> Streaming Vimeo videos requires video file access via the Vimeo API. Accessing video files is limited to [Vimeo Pro and Business](https://vimeo.com/upgrade) customers.
+> Streaming Vimeo videos requires video file access via the Vimeo API. Accessing video files is limited to [Vimeo Pro and Business customers](https://vimeo.com/upgrade). Also, for security reasons, it is necessary to run the included server which communicates with the API, if you are interested in learning more checkout our [threejs-player repository](https://github.com/vimeo/vimeo-threejs-player) which this component is based on.
 
 ## Questions
 For questions and support, [open a Github issue](https://github.com/vimeo/aframe-vimeo-component/issues/new).
