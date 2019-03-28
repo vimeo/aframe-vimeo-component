@@ -61,9 +61,6 @@ Try our other examples or head to our [Getting Started](https://github.com/vimeo
 ## Questions
 For questions and support, [open a Github issue](https://github.com/vimeo/aframe-vimeo-component/issues/new).
 
-## Stay in Touch
-[Join our newsletter](https://vimeo.us6.list-manage.com/subscribe?u=a3cca16f9d09cecb87db4be05&id=28000dad3e) for more updates, or visit the [Creator Labs website](https://labs.vimeo.com) to learn more.
-
 ## Contributing
 Get involved! Check out the [Setting up the development environment guide](https://github.com/vimeo/vimeo-threejs-player/wiki/Setting-up-the-development-environment-%F0%9F%91%B7%F0%9F%8F%BD%E2%80%8D) for how to get started.
 
